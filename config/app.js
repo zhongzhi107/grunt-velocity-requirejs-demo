@@ -22,15 +22,4 @@ module.exports = {
         prod: 'http://cdn.yourdomain.com'
     },
 
-    commonModuleName: 'common',
-
-    commonModuleInclude: [
-        'jquery',
-        'text',
-        'app/lib',
-        'app/controller/Base',
-        'app/model/Base'
-    ],
-
-
 };

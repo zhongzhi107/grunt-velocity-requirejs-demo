@@ -19,6 +19,12 @@ module.exports = {
             return m; 
         };
 
+        var moduleConfig = require('./module');
+        var keys = [];
+        for (var key in moduleConfig) {
+            keys.push(key.replace('/', '\/'));
+        }
+
         return {
             'html': [
                 /*jshint regexp:false */
@@ -85,7 +91,7 @@ module.exports = {
                     function (m) { return m.replace('.js', ''); }
                 ],*/
                 [
-                    /"(common)"/gm, //require('./common')
+                    new RegExp('"(' + keys.join('|') + ')"', 'gm'),
                     'Update the RequireJS modules with require tags',
                     function (m) { return m.match(/\.js$/) ? m : m + '.js'; },
                     function (m) { return m.replace('.js', ''); }
