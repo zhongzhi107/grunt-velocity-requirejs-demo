@@ -19,11 +19,10 @@ module.exports = {
             return m; 
         };
 
-        var moduleConfig = require('./module');
-        var keys = [];
-        for (var key in moduleConfig) {
-            keys.push(key.replace('/', '\/'));
-        }
+        // encode module name to RegExp pattern
+        var moduleKeys = Object.keys(require('./module')).map(function(item) {
+            return item.replace('/', '\/').replace('.', '\.');
+        })
 
         return {
             'html': [
@@ -91,7 +90,7 @@ module.exports = {
                     function (m) { return m.replace('.js', ''); }
                 ],*/
                 [
-                    new RegExp('"(' + keys.join('|') + ')"', 'gm'),
+                    new RegExp('"(' + moduleKeys.join('|') + ')"', 'gm'),
                     'Update the RequireJS modules with require tags',
                     function (m) { return m.match(/\.js$/) ? m : m + '.js'; },
                     function (m) { return m.replace('.js', ''); }
