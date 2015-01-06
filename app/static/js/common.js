@@ -14,5 +14,6 @@ requirejs.config({
     paths: {
         jquery: 'lib/jquery',
         text: 'lib/text',
+        i18n: 'lib/i18n'
     }
 });

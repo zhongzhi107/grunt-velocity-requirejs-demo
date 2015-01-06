@@ -177,6 +177,10 @@ module.exports = function (grunt) {
         // 路径配置
         yo: appConfig,
 
+        i18n: {
+          locale: 'fr'
+        },
+
         /**
          * Run predefined tasks whenever watched file patterns are added, changed or deleted.
          */
@@ -355,6 +359,7 @@ module.exports = function (grunt) {
                     paths: {
                         jquery: 'lib/jquery',
                         text: 'lib/text',
+                        i18n: 'lib/i18n'
                     },
                     dir: '<%=yo.dist%>/static/js',
                     optimize: 'none',
