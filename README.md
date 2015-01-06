@@ -9,13 +9,9 @@
 
 ## 步骤
 
-1. 安装grunt-cli，yo，generator-velocity
+1. 安装grunt-cli
 
-		npm install -g grunt-cli yo generator-velocity
-
-1. 初始化你的项目
-
-		yo xxx
+		npm install -g grunt-cli
 
 1. 安装项目依赖包
 
@@ -29,17 +25,17 @@
 
 1. 其他命令
 
-		// 编译全站	
+		// 编译全站
 		grunt build
-	
+
 		/**
 		 * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
 		 * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
 		 *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
 		 */
 		grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
-		
-		/** 
+
+		/**
 		 * server命令参数
 		 *   --host: 指定自动打开浏览器的域名，默认值：localhost
 		 *   --port: 指定自动打开浏览器的端口号，默认值：9001
@@ -69,7 +65,7 @@
     ├─app           //pad版程序代码
 	│   ├─data      //本地测试数据
 	│   │   ├─api   //页面初始化数据
-	│	│   └─page  //异步接口数据
+	│  │   └─page  //异步接口数据
 	│   ├─css
 	│   ├─js
 	│   └─vm        //vm模板
@@ -111,7 +107,7 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 
 	<link rel="stylesheet" href="/static/css/test.css"/>
 
- 
+
 ## 模拟数据的使用
 
 1. 模拟数据文件保存路径需要和vm模板路径一一对应
@@ -131,9 +127,3 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 
 ## background.less的用法
 由于css中的图片、字体会被编译成base64字符串，直接内联到css文件中，如果一张图片被多个css样式中使用，会导致图片被多次编译压缩，css文件体积会快速膨胀。为了避免这个问题，这就要求开发者在书写css时把指定background-image的样式都写一个文件中，确保压缩时只压缩一次。
-
-
-
-
-
-	

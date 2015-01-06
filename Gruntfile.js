@@ -424,7 +424,7 @@ module.exports = function (grunt) {
         },
 
         /**
-         * Parse CSS and add prefixed properties and values by Can I Use database 
+         * Parse CSS and add prefixed properties and values by Can I Use database
          * for actual browsers. Based on Autoprefixer.
          */
         autoprefixer: {
@@ -497,9 +497,9 @@ module.exports = function (grunt) {
         },
 
         /**
-         * prepares the configuration to transform specific blocks in the scrutinized file into a single line, 
-         * targeting an optimized version of the files. 
-         * This is done by generating subtasks called generated for every 
+         * prepares the configuration to transform specific blocks in the scrutinized file into a single line,
+         * targeting an optimized version of the files.
+         * This is done by generating subtasks called generated for every
          * optimization steps handled by the Grunt plugins listed below.
          */
         useminPrepare: {
@@ -507,12 +507,12 @@ module.exports = function (grunt) {
                 root: '<%=yo.app%>',
                 dest: '<%=yo.dist%>'
             },
-            // Entrance files to find usemin block 
+            // Entrance files to find usemin block
             html: '<%=velocity.root.dev%>/**/*.<%=velocity.ext%>'
         },
 
         /**
-         * Replaces references from non-optimized scripts, stylesheets and other assets 
+         * Replaces references from non-optimized scripts, stylesheets and other assets
          * to their optimized version within a set of HTML files (or any templates/views).
          * homepage: https://github.com/yeoman/grunt-usemin
          */
@@ -623,7 +623,7 @@ module.exports = function (grunt) {
         'autoprefixer:dist',
         'concat',
         'requirejs',
-        'imageEmbed',
+        //'imageEmbed',
         'uglify',
         'cssmin',
         'rev:dist',
