@@ -17,6 +17,7 @@ module.exports = {
           // nested dependencies.
         'jquery',
         'text',
+        'i18n',
         'app/lib',
         'app/model/Base'
     ],

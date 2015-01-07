@@ -59,9 +59,10 @@
     ├─config  
 	│   ├─app.js           //项目整体配置
 	│   ├─jshintrc.js      //jshint语法配置
+	│   ├─chunks.js      //全站js文件打包配置
 	│   ├─router-api.js     //异步请求与url对应关系配置
 	│   ├─router-template.js//模拟数据URL配置
-	│   └─velocity.js      //vm模板配置
+	│   └─usemin.js      //usemin配置，依赖module.js，一般不需要修改
     ├─app           //pad版程序代码
 	│   ├─data      //本地测试数据
 	│   │   ├─api   //页面初始化数据
@@ -127,3 +128,20 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 
 ## background.less的用法
 由于css中的图片、字体会被编译成base64字符串，直接内联到css文件中，如果一张图片被多个css样式中使用，会导致图片被多次编译压缩，css文件体积会快速膨胀。为了避免这个问题，这就要求开发者在书写css时把指定background-image的样式都写一个文件中，确保压缩时只压缩一次。
+
+## 语言包
+[RequireJS#i18n官方文档](http://requirejs.org/docs/api.html#i18n)
+
+### 注意：
+1. RequireJS预定的语言包目录是`nls`，名称不能修改
+2. 官方文档提供的字典文件写法
+```
+define({
+	"root": true,
+	"fr-fr": true,
+	"fr-fr-paris": true
+});
+```
+在打包md5后会有问题，请参考demo中的写法，
+这种写法牺牲了语言包动态加载的特性，从而确保程序的正确性。
+［todo］字典文件增加到一定数量时，可以考虑优化。

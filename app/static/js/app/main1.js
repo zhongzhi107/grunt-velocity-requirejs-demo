@@ -4,7 +4,7 @@ define([
     //'./controller/c1',
     './model/m1',
     'text!app/controller/t1.tpl',
-    'i18n!app/nls/colors'
+    'i18n!nls/colors'
 ],function (
     $,
     lib,

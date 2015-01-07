@@ -149,7 +149,7 @@ module.exports = function (grunt) {
 
     function getModulesConfig(dir) {
         var excludeModules = [];
-        var moduleConfig = require('./config/module') || {};
+        var moduleConfig = require('./config/chunks') || {};
         var returnConfig = [];
 
         for (var key in moduleConfig) {
@@ -177,9 +177,7 @@ module.exports = function (grunt) {
         // 路径配置
         yo: appConfig,
 
-        i18n: {
-          locale: 'fr'
-        },
+        locale: "en-us",
 
         /**
          * Run predefined tasks whenever watched file patterns are added, changed or deleted.
@@ -541,7 +539,8 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%=yo.dist%>/static/**/*.{js,css,png,jpg,jpeg,gif,ttf}'
+                    '<%=yo.dist%>/static/**/*.{js,css,png,jpg,jpeg,gif,ttf}',
+                    '!<%=yo.dist%>/static/js/app/nls/zh-cn/colors.js'
                     ]
                 }
             }

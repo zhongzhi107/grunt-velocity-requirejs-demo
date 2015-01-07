@@ -9,18 +9,18 @@
 module.exports = {
     pattern: function(cdnRoot) {
         // usemin支持传入前置/后置函数，处理匹配中的文件名
-        var filterIn = function (m) { 
-            return m; 
+        var filterIn = function (m) {
+            return m;
         };
         var filterOut = function (m) {
             if (/^(?!http:\/\/|https:\/\/|data:|\/\/).+?\.(js|css|png|jpg|gif|svg|swf|ico)/i.test(m)) {
                 m = cdnRoot + m;
             }
-            return m; 
+            return m;
         };
 
         // encode module name to RegExp pattern
-        var moduleKeys = Object.keys(require('./module')).map(function(item) {
+        var moduleKeys = Object.keys(require('./chunks')).map(function(item) {
             return item.replace('/', '\/').replace('.', '\.');
         })
 
@@ -100,4 +100,3 @@ module.exports = {
 
     }
 };
-
