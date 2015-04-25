@@ -63,7 +63,7 @@ module.exports = function (grunt) {
 
     // 加载node_modules下所有grunt开头的依赖模块
     // require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    require('matchdep').filterDev('grunt-*').forEach(function(nodeModule) {
+    require('matchdep').filterAll('grunt-*').forEach(function(nodeModule) {
         if (nodeModulesDir) {
             var cwd = process.cwd();
             process.chdir(nodeModulesDir);
@@ -230,6 +230,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
+                    open: 'http://localhost:9001',
                     middleware: function (connect) {
                         return [
                             lrSnippet,
@@ -253,16 +254,6 @@ module.exports = function (grunt) {
                     }
                 }
             },
-        },
-
-        /**
-         * Open urls and files from a grunt task.
-         */
-        open: {
-            server: {
-                path: 'http://<%=connect.options.localhost%>:<%=connect.options.port%>'//,
-                //app: chromeNames[require('os').platform()] //[chrome|Google Chrome|firefox|iexplore]
-            }
         },
 
         /**
@@ -605,9 +596,9 @@ module.exports = function (grunt) {
                 tasks.push('configureRewriteRules');
             }
             tasks.push('connect:livereload');
-            if (args.indexOf('noopen') === -1) {
-                tasks.push('open');
-            }
+            // if (args.indexOf('noopen') === -1) {
+            //     tasks.push('open');
+            // }
             tasks.push('watch');
         }
 
