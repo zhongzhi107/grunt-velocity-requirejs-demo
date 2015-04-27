@@ -77,7 +77,10 @@
     └─.tmp          //运行时生成临时文件
 
 ## 打包说明
-使用的是代码自我描述方式打包，不需要任何配置。
+支持2种打包方式：
+
+1. html代码注释自我描述打包，不需要任何配置
+2. requireJS配置打包，[查看配置文件](/tree/master/config/chunks.js)
 
 ### css
 
@@ -116,8 +119,8 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 ## 模拟数据的使用
 
 1. 模拟数据文件保存路径需要和vm模板路径一一对应
-2. 模拟数据文件其实是一个js模块化文件，支持js编程，最后把需要返回的数据在 exports 中return就行了
-3. _GET可以接收到url中的querystring，如 `?name=joe` ,可以用 `_GET['name']` 取到 `joe`，不支持POST
+2. 模拟数据文件其实是一个js模块化文件，支持js编程，传入参数保护 req 和 res，
+在req中能获取到请求参数、cookie等信息，在res中能控制返回状态码、消息体、数据格式等信息
 
 模拟数据分为2类
 
@@ -125,27 +128,10 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 - 异步接口数据
 
 ### 页面初始化数据
-这类数据会随着页面模板一起加载，放在 `/app/data/page/ebooking/xxx.js`
+这类数据会随着页面模板一起加载，放在 `/app/data/page/xxx.js`
 
 ### 页面初始化数据
-这类数据通过AJAX请求加载，放在 `/app/data/api/ebooking/xxx.js`
+这类数据通过AJAX请求加载，放在 `/app/data/api/xxx.js`
 
 ## background.less的用法
-由于css中的图片、字体会被编译成base64字符串，直接内联到css文件中，如果一张图片被多个css样式中使用，会导致图片被多次编译压缩，css文件体积会快速膨胀。为了避免这个问题，这就要求开发者在书写css时把指定background-image的样式都写一个文件中，确保压缩时只压缩一次。
-
-## 语言包
-[RequireJS#i18n官方文档](http://requirejs.org/docs/api.html#i18n)
-
-### 注意：
-1. RequireJS预定的语言包目录是`nls`，名称不能修改
-2. 官方文档提供的字典文件写法
-```
-define({
-	"root": true,
-	"fr-fr": true,
-	"fr-fr-paris": true
-});
-```
-在打包md5后会有问题，请参考demo中的写法，
-这种写法牺牲了语言包动态加载的特性，从而确保程序的正确性。
-［todo］字典文件增加到一定数量时，可以考虑优化。
+多页面网站建议使用css sprite合并图片，不建议采用图片css内联

@@ -17,7 +17,6 @@
 *
 *   server命令控制开关，可以单独使用
 *   > grunt server:nobuild:noopen:norewrite
-*   // :dist 编译并预览编译后的文件
 *   // :nobuild 禁止编译功能，直接预览已经编译好的文件
 *   // :noopen  禁止自动启动浏览器功能
 *   // :norewrite 禁止地址转发功能
