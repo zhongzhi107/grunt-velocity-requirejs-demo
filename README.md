@@ -80,7 +80,7 @@
 支持2种打包方式：
 
 1. html代码注释自我描述打包，不需要任何配置
-2. requireJS配置打包，[查看配置文件](/tree/master/config/chunks.js)
+2. requireJS配置打包，[查看配置文件](/blob/master/config/chunks.js)
 
 ### css
 
