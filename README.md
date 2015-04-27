@@ -17,6 +17,10 @@
 
 		npm install
 
+	生产环境运行以下命令
+
+		npm install -production
+
 	碰到网络不好的时候，依赖包可能安装失败，请删除 `node_modules` 重新安装
 
 1. 运行grunt本地服务器

@@ -29,6 +29,8 @@
     "jquery": true,
     // 全局变量（免校验）
     "globals": {
+        "require": true,
+        "module": true,
         "_": true,
         "Backbone": true,
         "define": true,
