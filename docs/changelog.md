@@ -1,6 +1,6 @@
 # Change log
 
-## [0.2.0] (2015-04-27)
+## [0.2.0] (/tree/0.2.0) (2015-04-27)
 
 **Implemented enhancements:**
 
