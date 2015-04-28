@@ -20,8 +20,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "*",
+    "moment": "*",
     "requirejs": "*",
-    "requirejs-text": "*"
+    "requirejs-text": "*",
+    "jquery": "*",
+    "underscore": "*",
+    "backbone": "*"
   }
 }
