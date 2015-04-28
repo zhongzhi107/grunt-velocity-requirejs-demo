@@ -9,43 +9,48 @@
 
 ## 步骤
 
-1. 安装grunt-cli
-
-		npm install -g grunt-cli
+1. 安装grunt-cli和bower
+```sh
+npm install -g grunt-cli bower
+```
 
 1. 安装项目依赖包
+```sh
+npm install
+# 生产环境运行以下命令
+# npm install -production
+```
 
-		npm install
-
-	生产环境运行以下命令
-
-		npm install -production
-
-	碰到网络不好的时候，依赖包可能安装失败，请删除 `node_modules` 重新安装
+1. 安装bower依赖包
+```sh
+grunt bower:install
+```
 
 1. 运行grunt本地服务器
-
-		grunt server
+```sh
+grunt server
+```
 
 1. 其他命令
 
-		// 编译全站
-		grunt build
+```sh
+// 编译全站
+grunt build
 
-		/**
-		 * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
-		 * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
-		 *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
-		 */
-		grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
+/**
+ * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
+ * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
+ *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
+ */
+grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
-		/**
-		 * server命令参数
-		 *   --host: 指定自动打开浏览器的域名，默认值：localhost
-		 *   --port: 指定自动打开浏览器的端口号，默认值：9001
-		 */
-		 grunt server --host=www.yourdomain.com --port=9002
-
+/**
+ * server命令参数
+ *   --host: 指定自动打开浏览器的域名，默认值：localhost
+ *   --port: 指定自动打开浏览器的端口号，默认值：9001
+ */
+ grunt server --host=www.yourdomain.com --port=9002
+```
 
 ## 多个工程共享node_modules
 
@@ -70,7 +75,7 @@
     ├─app           //pad版程序代码
 	│   ├─data      //本地测试数据
 	│   │   ├─api   //页面初始化数据
-	│  │   └─page  //异步接口数据
+	│   │   └─page  //异步接口数据
 	│   ├─css
 	│   ├─js
 	│   └─vm        //vm模板
@@ -80,7 +85,7 @@
 支持2种打包方式：
 
 1. html代码注释自我描述打包，不需要任何配置
-2. requireJS配置打包，[查看配置文件](config/chunks.js)
+2. RequireJS配置打包，[查看配置文件](config/chunks.js)
 
 ### css
 

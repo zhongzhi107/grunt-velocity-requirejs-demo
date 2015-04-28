@@ -80,6 +80,8 @@ module.exports = function (grunt) {
     // 路径配置
     yo: appConfig,
 
+    bower: require('./config/grunt/bower'),
+
     /**
     * Run predefined tasks whenever watched file patterns are added, changed or deleted.
     */
