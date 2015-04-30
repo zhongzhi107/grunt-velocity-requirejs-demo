@@ -59,27 +59,42 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下
 
 ## 目录说明
-    ├─package.json  //grunt依赖包配置文件
-    ├─pom.xml       //pom文件，设置了maven包信息
-    ├─.gitignore
-    ├─Gruntfile.js  //grunt配置文件
-    ├─node_modules  //依赖包存放目录
-    ├─prd           //编译输出目录
-    ├─config  
-	│   ├─app.js            //项目整体配置
-	│   ├─jshintrc.js       //jshint语法配置
-	│   ├─bundle.js         //全站js文件打包配置
-	│   ├─router-api.js     //异步请求与url对应关系配置
-	│   ├─router-page.js    //模拟数据URL配置
-	│   └─usemin.js         //usemin配置，依赖module.js，一般不需要修改
-    ├─app           //pad版程序代码
-	│   ├─data      //本地测试数据
-	│   │   ├─api   //页面初始化数据
-	│   │   └─page  //异步接口数据
-	│   ├─css
-	│   ├─js
-	│   └─vm        //vm模板
-    └─.tmp          //运行时生成临时文件
+```
+...
+  ├─package.json  //grunt依赖包配置文件
+  ├─pom.xml       //pom文件，设置了maven包信息
+  ├─.gitignore
+  ├─Gruntfile.js  //grunt配置文件
+  ├─node_modules  //依赖包存放目录
+  ├─prd           //编译输出目录
+  ├─config  
+  │   ├─app.js            //项目整体配置
+  │   ├─jshintrc.js       //jshint语法配置
+  │   ├─bundle.js         //全站js文件打包配置
+  │   ├─router-api.js     //异步请求与url对应关系配置
+  │   ├─router-page.js    //模拟数据URL配置
+  │   └─usemin.js         //usemin配置，依赖module.js，一般不需要修改
+  ├─app           //pad版程序代码
+  │   ├─data      //本地测试数据
+  │   │   ├─api   //页面初始化数据
+  │   │   └─page  //异步接口数据
+  │   ├─css
+  │   ├─js
+  │   └─vm        //vm模板
+  └─.tmp          //运行时生成临时文件
+```
+
+## 路由说明
+开发环境下有2种路由：
+
+1. api —— 前端Ajax异步请求数据模拟，对应的配置文件是 [config/router-api](config/router-api)，
+对应的数据在 [app/data/api](app/data/api)，可以配置成：
+  1. 本地假数据
+  2. 远程测试环境
+  3. 线上环境
+
+2. page —— 设置vm模版和线上URL对应关系，对应的配置文件是 [config/router-page](config/router-page)，
+对应的数据在 [app/data/page](app/data/page)，
 
 ## 打包说明
 支持2种打包方式：
