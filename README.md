@@ -87,13 +87,13 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 ## 路由说明
 开发环境下有2种路由：
 
-1. api —— 前端Ajax异步请求数据模拟，对应的配置文件是 [config/router-api](config/router-api)，
+1. api —— 前端Ajax异步请求数据模拟，对应的配置文件是 [config/router-api.js](config/router-api.js)，
 对应的数据在 [app/data/api](app/data/api)，可以配置成：
   1. 本地假数据
   2. 远程测试环境
   3. 线上环境
 
-2. page —— 设置vm模版和线上URL对应关系，对应的配置文件是 [config/router-page](config/router-page)，
+2. page —— 设置vm模版和线上URL对应关系，对应的配置文件是 [config/router-page.js](config/router-page.js)，
 对应的数据在 [app/data/page](app/data/page)，
 
 ## 打包说明
