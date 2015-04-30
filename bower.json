@@ -25,6 +25,7 @@
     "requirejs-text": "*",
     "jquery": "*",
     "underscore": "*",
-    "backbone": "*"
+    "backbone": "*",
+    "qunit": "*"
   }
 }

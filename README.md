@@ -66,12 +66,12 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
     ├─node_modules  //依赖包存放目录
     ├─prd           //编译输出目录
     ├─config  
-	│   ├─app.js           //项目整体配置
-	│   ├─jshintrc.js      //jshint语法配置
-	│   ├─chunks.js      //全站js文件打包配置
+	│   ├─app.js            //项目整体配置
+	│   ├─jshintrc.js       //jshint语法配置
+	│   ├─bundle.js         //全站js文件打包配置
 	│   ├─router-api.js     //异步请求与url对应关系配置
-	│   ├─router-template.js//模拟数据URL配置
-	│   └─usemin.js      //usemin配置，依赖module.js，一般不需要修改
+	│   ├─router-page.js    //模拟数据URL配置
+	│   └─usemin.js         //usemin配置，依赖module.js，一般不需要修改
     ├─app           //pad版程序代码
 	│   ├─data      //本地测试数据
 	│   │   ├─api   //页面初始化数据

@@ -17,11 +17,9 @@ var require = {
   baseUrl: baseURL,
 
   paths: {
-    jquery: 'lib/jquery',
-    text: 'lib/text',
-    i18n: 'lib/i18n'
+    jquery: 'lib/jquery/jquery',
+    text: 'lib/requirejs-text/text'
   },
-
 
   // The shim config allows us to configure dependencies for
   // scripts that do not call define() to register a module
@@ -31,23 +29,6 @@ var require = {
     },
     underscore: {
       exports: '_'
-    },
-    backbone: {
-      deps: [
-        'underscore',
-        'jquery'
-      ],
-      exports: 'Backbone'
-    },
-    usercenter: {
-      deps: [
-        'common/lib'
-      ]
-    },
-    datepicker: {
-      deps: [
-        'common/lib'
-      ]
     }
   }
 };

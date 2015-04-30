@@ -29,12 +29,6 @@
 'use strict';
 
 module.exports = function (grunt) {
-
-  // console.log(process.argv[2]);
-  // console.log(grunt.cli.tasks);
-  // console.log('===');
-  // return;
-
   // 定义编译类型，并将其存入运行环境变量中
   process.env.DEPLOY_TYPE = grunt.option('deploy-type') || '';
 
@@ -145,7 +139,7 @@ module.exports = function (grunt) {
     * This is done by generating subtasks called generated for every
     * optimization steps handled by the Grunt plugins listed below.
     */
-    useminPrepare: require('./config/grunt/useminPrepare'),
+    useminPrepare: require('./config/grunt/usemin-prepare'),
 
     /**
     * Replaces references from non-optimized scripts, stylesheets and other assets
