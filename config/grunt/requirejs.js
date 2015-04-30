@@ -1,9 +1,12 @@
 'use strict';
 
+var path = require('path');
+var util = require('util');
+
 module.exports = function(grunt) {
   function getModulesConfig(dir) {
     var excludeModules = [];
-    var moduleConfig = require('../chunks') || {};
+    var moduleConfig = require('../bundle') || {};
     var returnConfig = [];
 
     for (var key in moduleConfig) {
@@ -15,25 +18,32 @@ module.exports = function(grunt) {
     }
 
     grunt.file.recurse(dir, function(abspath, rootdir, subdir, filename) {
-      if (/page\d\.js/.test(filename)) {
+      if (filename === 'main.js') {
         returnConfig.push({
-          name: (subdir ? subdir + '/' : '') + filename.replace('.js', ''),
+          name: path.join(subdir, 'main'),
           exclude: excludeModules
         });
       }
     });
+
+    grunt.verbose
+      .subhead('Bundle options:')
+      .writeln(util.inspect(returnConfig));
+
     return returnConfig;
   }
+
+  var config = require('../../app/static/js/common/require-config');
 
   return {
     dist: {
       // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
       options: {
         appDir: '<%=yo.app%>/static/js',
-        baseUrl: '.',
-        paths: require('../../app/static/js/common/require-config').paths,
-        shim: require('../../app/static/js/common/require-config').shim,
         dir: '<%=yo.dist%>/static/js',
+        baseUrl: '.',
+        paths: config.paths,
+        shim: config.shim,
         optimize: 'none',
         findNestedDependencies: true,
         inlineText: true,
