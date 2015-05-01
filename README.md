@@ -51,6 +51,28 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
  */
  grunt server --host=www.yourdomain.com --port=9002
 ```
+## 特点
+
+### 已完成
+* [velocity]支持velocity后端模版解析
+* [requirejs]支持模块化开发，模块化加载和打包
+* [fontend template]支持前端模版inline编译
+* [less]支持less
+* [autoprefixer]根据caniuse.com的数据自动补全浏览器厂商前缀
+* [css sprite]支持自动生成CSS Sprite
+* [imagemin]jpg/png图片无损压缩
+* [bower]前端资源包bower管理
+* [jshint]jshint语法检查
+* [bundle]使用自定义规则自动合并资源
+* [rev]编译后的静态文件自动添加md5戳
+* [router-page]开发环境支持模版与URL地址关系配置
+* [router-api]开发环境支持同步／异步接口假数据
+* [liveReload]开发环境下，静态文件修改后自动刷新浏览器
+
+### TODO
+* [psi]pagespeed性能优化
+* [babel]es6语法支持
+*
 
 ## 多个工程共享node_modules
 
@@ -104,10 +126,12 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
 ### css
 
-	<!-- build:css /static/css/common.css -->
-	<link rel="stylesheet" href="/static/css/common.css"/>
-	<link type="text/css" rel="stylesheet" href="/static/css/ebooking.css">
-	<!-- endbuild -->
+```html
+<!-- build:css /static/css/common.css -->
+<link rel="stylesheet" href="/static/css/common.css"/>
+<link type="text/css" rel="stylesheet" href="/static/css/ebooking.css">
+<!-- endbuild -->
+```
 
 **代码功能说明**
 
@@ -117,12 +141,14 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
 ### js
 
-	<!-- build:js /static/js/common.js -->
-	<script src="/static/js/underscore.js"></script>
-	<script src="/static/js/zepto.js"></script>
-	<script src="/static/js/zepto.extend.js"></script>
-	<script src="/static/js/zepto.mockjax.js"></script>
-	<!-- endbuild -->
+```html
+<!-- build:js /static/js/common.js -->
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/zepto.js"></script>
+<script src="/static/js/zepto.extend.js"></script>
+<script src="/static/js/zepto.mockjax.js"></script>
+<!-- endbuild -->
+```
 
 **代码功能说明**
 
