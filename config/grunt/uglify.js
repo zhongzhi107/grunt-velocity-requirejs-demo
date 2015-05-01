@@ -9,7 +9,7 @@ module.exports = {
       // Set global JavaScript varible value when uglify compressing
       'global_defs': {
         DEBUG: false,
-        CDN_ROOT: '<%=cdnRoot%>'
+        CDN_ROOT: require('../app').cdnDomain[process.env.DEPLOY_TYPE]
       }
     }
   },
