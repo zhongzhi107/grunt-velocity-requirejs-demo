@@ -16,20 +16,17 @@ module.exports = function(grunt) {
   // parse velocity template
   function velocityParser (req, res, next) {
     function requireUncached(module){
-      //delete require.cache[require.resolve(module)];
-      //console.log('===', path.resolve(process.cwd(), module));
       var requirePath = path.resolve(process.cwd(), module);
       delete require.cache[requirePath];
       return require(requirePath);
     }
 
-    var routerTemplate = requireUncached('config/router-template');
+    var routerPage = requireUncached('config/router-page');
     var Engine = require('velocity/lib/engine');
 
     // parse VM template
     var urlObject = url.parse(req.url);
-    var queryString = querystring.parse(urlObject.query);
-    var template = routerTemplate[urlObject.pathname];
+    var template = routerPage[urlObject.pathname];
     var templateRoot = grunt.config('velocity.root.dev');
     if (grunt.option('dist')) {
       templateRoot = grunt.config('velocity.root.dist');
@@ -46,7 +43,7 @@ module.exports = function(grunt) {
 
       if (fs.existsSync(contextFile + '.js')) {
         try {
-          context = requireUncached(contextFile)(queryString);
+          context = requireUncached(contextFile)(req, res);
         }
         catch (e) {
           console.log('\n');

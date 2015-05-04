@@ -9,43 +9,70 @@
 
 ## 步骤
 
-1. 安装grunt-cli
-
-		npm install -g grunt-cli
+1. 安装grunt-cli和bower
+```sh
+npm install -g grunt-cli bower
+```
 
 1. 安装项目依赖包
+```sh
+npm install
+# 生产环境运行以下命令
+# npm install -production
+```
 
-		npm install
-
-	生产环境运行以下命令
-
-		npm install -production
-
-	碰到网络不好的时候，依赖包可能安装失败，请删除 `node_modules` 重新安装
+1. 安装bower依赖包
+```sh
+grunt bower:install
+```
 
 1. 运行grunt本地服务器
-
-		grunt server
+```sh
+grunt server
+```
 
 1. 其他命令
 
-		// 编译全站
-		grunt build
+```sh
+// 编译全站
+grunt build
 
-		/**
-		 * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
-		 * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
-		 *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
-		 */
-		grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
+/**
+ * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
+ * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
+ *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
+ */
+grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
-		/**
-		 * server命令参数
-		 *   --host: 指定自动打开浏览器的域名，默认值：localhost
-		 *   --port: 指定自动打开浏览器的端口号，默认值：9001
-		 */
-		 grunt server --host=www.yourdomain.com --port=9002
+/**
+ * server命令参数
+ *   --host: 指定自动打开浏览器的域名，默认值：localhost
+ *   --port: 指定自动打开浏览器的端口号，默认值：9001
+ */
+ grunt server --host=www.yourdomain.com --port=9002
+```
+## 特点
 
+### 已完成
+* [velocity]支持velocity后端模版解析
+* [requirejs]支持模块化开发，模块化加载和打包
+* [fontend template]支持前端模版inline编译
+* [less]支持less
+* [autoprefixer]根据caniuse.com的数据自动补全浏览器厂商前缀
+* [css sprite]支持自动生成CSS Sprite
+* [imagemin]jpg/png图片无损压缩
+* [bower]前端资源包bower管理
+* [jshint]jshint语法检查
+* [bundle]使用自定义规则自动合并资源
+* [rev]编译后的静态文件自动添加md5戳
+* [router-page]开发环境支持模版与URL地址关系配置
+* [router-api]开发环境支持同步／异步接口假数据
+* [liveReload]开发环境下，静态文件修改后自动刷新浏览器
+
+### TODO
+* [psi]pagespeed性能优化
+* [babel]es6语法支持
+*
 
 ## 多个工程共享node_modules
 
@@ -54,40 +81,57 @@
 全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下
 
 ## 目录说明
-    ├─package.json  //grunt依赖包配置文件
-    ├─pom.xml       //pom文件，设置了maven包信息
-    ├─.gitignore
-    ├─Gruntfile.js  //grunt配置文件
-    ├─node_modules  //依赖包存放目录
-    ├─prd           //编译输出目录
-    ├─config  
-	│   ├─app.js           //项目整体配置
-	│   ├─jshintrc.js      //jshint语法配置
-	│   ├─chunks.js      //全站js文件打包配置
-	│   ├─router-api.js     //异步请求与url对应关系配置
-	│   ├─router-template.js//模拟数据URL配置
-	│   └─usemin.js      //usemin配置，依赖module.js，一般不需要修改
-    ├─app           //pad版程序代码
-	│   ├─data      //本地测试数据
-	│   │   ├─api   //页面初始化数据
-	│  │   └─page  //异步接口数据
-	│   ├─css
-	│   ├─js
-	│   └─vm        //vm模板
-    └─.tmp          //运行时生成临时文件
+```
+...
+  ├─package.json  //grunt依赖包配置文件
+  ├─pom.xml       //pom文件，设置了maven包信息
+  ├─.gitignore
+  ├─Gruntfile.js  //grunt配置文件
+  ├─node_modules  //依赖包存放目录
+  ├─prd           //编译输出目录
+  ├─config  
+  │   ├─app.js            //项目整体配置
+  │   ├─jshintrc.js       //jshint语法配置
+  │   ├─bundle.js         //全站js文件打包配置
+  │   ├─router-api.js     //异步请求与url对应关系配置
+  │   ├─router-page.js    //模拟数据URL配置
+  │   └─usemin.js         //usemin配置，依赖module.js，一般不需要修改
+  ├─app           //pad版程序代码
+  │   ├─data      //本地测试数据
+  │   │   ├─api   //页面初始化数据
+  │   │   └─page  //异步接口数据
+  │   ├─css
+  │   ├─js
+  │   └─vm        //vm模板
+  └─.tmp          //运行时生成临时文件
+```
+
+## 路由说明
+开发环境下有2种路由：
+
+1. api —— 前端Ajax异步请求数据模拟，对应的配置文件是 [config/router-api.js](config/router-api.js)，
+对应的数据在 [app/data/api](app/data/api)，可以配置成：
+  1. 本地假数据
+  2. 远程测试环境
+  3. 线上环境
+
+2. page —— 设置vm模版和线上URL对应关系，对应的配置文件是 [config/router-page.js](config/router-page.js)，
+对应的数据在 [app/data/page](app/data/page)，
 
 ## 打包说明
 支持2种打包方式：
 
 1. html代码注释自我描述打包，不需要任何配置
-2. requireJS配置打包，[查看配置文件](config/chunks.js)
+2. RequireJS配置打包，[查看配置文件](config/chunks.js)
 
 ### css
 
-	<!-- build:css /static/css/common.css -->
-	<link rel="stylesheet" href="/static/css/common.css"/>
-	<link type="text/css" rel="stylesheet" href="/static/css/ebooking.css">
-	<!-- endbuild -->
+```html
+<!-- build:css /static/css/common.css -->
+<link rel="stylesheet" href="/static/css/common.css"/>
+<link type="text/css" rel="stylesheet" href="/static/css/ebooking.css">
+<!-- endbuild -->
+```
 
 **代码功能说明**
 
@@ -97,12 +141,14 @@
 
 ### js
 
-	<!-- build:js /static/js/common.js -->
-	<script src="/static/js/underscore.js"></script>
-	<script src="/static/js/zepto.js"></script>
-	<script src="/static/js/zepto.extend.js"></script>
-	<script src="/static/js/zepto.mockjax.js"></script>
-	<!-- endbuild -->
+```html
+<!-- build:js /static/js/common.js -->
+<script src="/static/js/underscore.js"></script>
+<script src="/static/js/zepto.js"></script>
+<script src="/static/js/zepto.extend.js"></script>
+<script src="/static/js/zepto.mockjax.js"></script>
+<!-- endbuild -->
+```
 
 **代码功能说明**
 

@@ -3,16 +3,22 @@
 module.exports = {
   dev: {
     expand: true,
-    flatten: true,
     ext: '.css',
-    src: '<%=yo.app%>/static/css/**/*.less',
-    dest: '.tmp/static/css/'
+    cwd: '<%=yo.app%>/static/css',
+    src: [
+      '**/*.less',
+      '!common/{icon,repeat-x,repeat-y}.less'
+    ],
+    dest: '.tmp/static/css'
   },
   dist: {
     expand: true,
-    flatten: true,
     ext: '.css',
-    src: '<%=yo.app%>/static/css/**/*.less',
-    dest: '.tmp/concat/static/css/'
+    cwd: '<%=yo.app%>/static/css',
+    src: [
+      '**/*.less',
+      '!common/{icon,repeat-x,repeat-y}.less'
+    ],
+    dest: '.tmp/concat/static/css'
   }
 }

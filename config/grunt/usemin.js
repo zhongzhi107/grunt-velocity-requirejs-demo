@@ -2,7 +2,7 @@
 
 module.exports = function(){
   var cdnRoot = require('../app').cdnDomain[process.env.DEPLOY_TYPE];
-  
+
   return {
     // look under this files
     css: '<%=yo.dist%>/static/css/**/*.css',
@@ -16,7 +16,7 @@ module.exports = function(){
         '<%=yo.dist%>/static/css'
       ],
       // Extend default settings to support CDN url.
-      patterns: require('../usemin').pattern(cdnRoot)
+      patterns: require('../usemin-pattern').pattern(cdnRoot)
     }
   };
 };

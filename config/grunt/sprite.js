@@ -3,12 +3,12 @@
 module.exports = {
     icon: {
         src: [
-            '<%=yo.app%>/static/images/common/icons/*.png',
+            '<%=yo.app%>/static/images/common/icon/*.png',
             '!<%=yo.app%>/static/images/**/sprite.png'
         ],
-        dest: '<%=yo.app%>/static/images/common/icons/sprite.png',
-        destCss: '<%=yo.app%>/static/css/common/icons.less',
-        imgPath: '/static/images/common/icons/sprite.png',
+        dest: '<%=yo.app%>/static/images/common/icon/sprite.png',
+        destCss: '<%=yo.app%>/static/css/common/icon.less',
+        imgPath: '/static/images/common/icon/sprite.png',
         cssFormat: 'less'
     },
     'repeat-x': {

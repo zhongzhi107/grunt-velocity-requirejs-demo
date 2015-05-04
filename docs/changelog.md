@@ -4,6 +4,7 @@
 
 **Implemented enhancements:**
 
+- 增加了bower包管理
 - 拆分Gruntfile.js成多个功能单一的配置文件
 - 增加CSS Sprite自动拼图功能
 - 删除grunt-image-embed-zz依赖包

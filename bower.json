@@ -1,0 +1,31 @@
+{
+  "name": "grunt-velocity-requirejs-demo",
+  "version": "0.2.0",
+  "homepage": "https://github.com/zhongzhi107/grunt-velocity-requirejs-demo",
+  "authors": [
+    "zhi.zhong <zhi.zhong@163.com>"
+  ],
+  "description": "Grunt velocity requirejs demo",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/static/js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "*",
+    "requirejs": "*",
+    "requirejs-text": "*",
+    "jquery": "*",
+    "underscore": "*",
+    "backbone": "*",
+    "qunit": "*"
+  }
+}
