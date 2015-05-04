@@ -74,12 +74,6 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 * [psi]pagespeed性能优化
 *
 
-## 多个工程共享node_modules
-
-为了以后多分支开发方便，可以将 `node_modules` 移动到项目外(比如 `/home/zhi.zhong` )，启动时加上参数 `--node-modules=/home/zhi.zhong` ，指定node\_modules的位置即可
-
-全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下
-
 ## 目录说明
 ```
 ...
@@ -182,3 +176,9 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 
 ## background.less的用法
 多页面网站建议使用css sprite合并图片，不建议采用图片css内联
+
+## 多个工程共享node_modules
+
+为了以后多分支开发方便，可以将 `node_modules` 移动到项目外(比如 `/home/zhi.zhong` )，启动时加上参数 `--node-modules=/home/zhi.zhong` ，指定node\_modules的位置即可
+
+全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下

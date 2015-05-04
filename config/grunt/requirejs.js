@@ -5,7 +5,8 @@ var util = require('util');
 
 module.exports = function(grunt) {
   function getModulesConfig(dir) {
-    var excludeModules = [];
+    // babel解析包只在运行时需要，发布的bundle文件中不需要打包
+    var excludeModules = ['babel'];
     var moduleConfig = require('../bundle') || {};
     var returnConfig = [];
 
