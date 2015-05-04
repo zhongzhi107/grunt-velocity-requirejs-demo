@@ -68,10 +68,10 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 * [router-page]开发环境支持模版与URL地址关系配置
 * [router-api]开发环境支持同步／异步接口假数据
 * [liveReload]开发环境下，静态文件修改后自动刷新浏览器
+* [babel]es6语法支持
 
 ### TODO
 * [psi]pagespeed性能优化
-* [babel]es6语法支持
 *
 
 ## 多个工程共享node_modules
@@ -89,6 +89,7 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
   ├─Gruntfile.js  //grunt配置文件
   ├─node_modules  //依赖包存放目录
   ├─prd           //编译输出目录
+  ├─tasks         //自定义grunt任务
   ├─config  
   │   ├─app.js            //项目整体配置
   │   ├─jshintrc.js       //jshint语法配置
