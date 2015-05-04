@@ -44,10 +44,13 @@ module.exports = function(grunt) {
         baseUrl: '.',
         paths: config.paths,
         shim: config.shim,
+        config: config.config,
+        pragmasOnSave: config.pragmasOnSave,
         optimize: 'none',
         findNestedDependencies: true,
         inlineText: true,
         removeCombined: true,
+        useStrict: true,
         modules: getModulesConfig('app/static/js')
       }
     }

@@ -18,7 +18,9 @@ var require = {
 
   paths: {
     jquery: 'lib/jquery/jquery',
-    text: 'lib/requirejs-text/text'
+    text: 'lib/requirejs-text/text',
+    es6: 'lib/js/requirejs-babel/es6',
+    babel: 'lib/js/requirejs-babel/babel-4.6.6.min'
   },
 
   // The shim config allows us to configure dependencies for
@@ -30,12 +32,26 @@ var require = {
     underscore: {
       exports: '_'
     }
+  },
+
+  config: {
+    es6: {
+      resolveModuleSource: function(source) {
+        return 'es6!' + source;
+      }
+    }
+  },
+
+  pragmasOnSave: {
+    excludeBabel: true
   }
 };
 
 if ( typeof module === 'object' && typeof module.exports === 'object' ) {
   module.exports = {
     paths: require.paths,
-    shim: require.shim
+    shim: require.shim,
+    config: require.config,
+    pragmasOnSave: require.pragmasOnSave
   };
 }
