@@ -13,7 +13,7 @@ module.exports = {
             return m;
         };
         var filterOut = function (m) {
-            if (/^(?!http:\/\/|https:\/\/|data:|\/\/).+?\.(js|css|png|jpg|gif|svg|swf|ico)/i.test(m)) {
+            if (/^(?!http:\/\/|https:\/\/|data:|\/\/).+?\.(js|css|png|jpg|gif|svg|swf|ico|ttf|eot|otf|svg|woff|woff2)/i.test(m)) {
                 m = cdnRoot + m;
             }
             return m;
@@ -48,8 +48,12 @@ module.exports = {
                 [
                     /data-main\s*=['"]([^"']+)['"]/gm,
                     'Update the HTML with data-main tags',
-                    function (m) { return m.match(/\.js$/) ? m : m + '.js'; },
-                    function (m) { return m.replace('.js', ''); }
+                    function (m) { 
+						return m.match(/\.js$/) ? m : m + '.js';
+					},
+                    function (m) { 
+						return filterOut(m); 
+					}
                 ],
                 [
                     /data-(?!main).[^=]+=['"]([^'"]+)['"]/gm,
@@ -79,7 +83,9 @@ module.exports = {
             'css': [
                 /*jshint regexp:false */
                 [ /(?:src=|url\(\s*)['"]?([^'"\)]+)['"]?\s*\)?/gm,
-                    'Update the CSS to reference our revved images'
+                    'Update the CSS to reference our revved images',
+					filterIn,
+					filterOut
                 ]
             ],
             'js': [

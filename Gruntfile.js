@@ -130,7 +130,7 @@ module.exports = function (grunt) {
     /**
     * Minify files with UglifyJS.
     */
-    uglify: require('./config/grunt/uglify'),
+    uglify: require('./config/grunt/uglify')(),
 
     /**
     * Compress CSS files.
@@ -205,6 +205,7 @@ module.exports = function (grunt) {
     //'jshint',
     'copy:css',
     'copy:js',
+    'copy:others',
     'imagemin',
     'copy:image',
     'useminPrepare',
