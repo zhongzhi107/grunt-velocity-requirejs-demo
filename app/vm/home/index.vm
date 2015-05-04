@@ -5,6 +5,7 @@
     <title>$pageTitle</title>
     <!-- build:css(.tmp/concat) /static/css/index.css -->
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/js/lib/qunit/qunit.css">
     <link rel="stylesheet" href="/static/css/pages/home/index.css">
     <!-- endbuild -->
 </head>
@@ -15,7 +16,7 @@
 
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
-
+  
   #parse('common/footer.vm')
 
   <script src="/static/js/common/require-config.js"></script>

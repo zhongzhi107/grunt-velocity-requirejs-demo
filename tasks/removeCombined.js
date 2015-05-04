@@ -52,6 +52,7 @@ module.exports = function(grunt) {
         var matches = /(^\w+!)([^!]*)/gm.exec(line);
         pluginName = matches[1].replace('!', '');
         pluginFile = path.join(options.baseURL, matches[2]);
+        console.log('=====', pluginName, pluginFile);
 
         if (fs.existsSync(pluginFile)) {
           removeFile(pluginFile, options.removeEmptyFolder);
