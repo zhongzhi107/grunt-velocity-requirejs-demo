@@ -202,7 +202,7 @@ module.exports = function (grunt) {
   // 注册代码编译任务
   grunt.registerTask('build', [
     'clean:dist',
-    //'jshint',
+    'jshint',
     'copy:css',
     'copy:js',
     'imagemin',
