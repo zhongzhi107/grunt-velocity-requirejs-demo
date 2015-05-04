@@ -1,6 +1,6 @@
 {
   "name": "grunt-velocity-requirejs-demo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "dependencies": {
     "grunt": "0.4.5",
     "grunt-autoprefixer": "2.1.0",
@@ -19,6 +19,7 @@
     "grunt-usemin": "3.0.0",
     "jshint-stylish": "1.0.0",
     "matchdep": "0.3.0",
+    "requirejs-babel": "0.0.6",
     "time-grunt": "1.0.0"
   },
   "devDependencies": {
