@@ -1,5 +1,16 @@
 # Change log
 
+## [0.3.0] (/tree/0.3.0) (2015-05-04)
+
+**Implemented enhancements:**
+
+- 增加了es6语法支持
+-
+
+**Fixed bugs:**
+
+- 修复r.js removeCombined配置为true时不删除插件引用文件的bug
+
 ## [0.2.0] (/tree/0.2.0) (2015-04-27)
 
 **Implemented enhancements:**
