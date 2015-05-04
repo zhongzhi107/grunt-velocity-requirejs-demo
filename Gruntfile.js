@@ -159,10 +159,14 @@ module.exports = function (grunt) {
     */
     rev: require('./config/grunt/rev'),
 
+    removeCombined: require('./config/grunt/removeCombined')
+
   };
 
   // The initialization of Grunt configuration parameters
   grunt.initConfig(config);
+
+  grunt.loadTasks('tasks');
 
   // Registration start a local web server tasks
   grunt.registerTask('server', function ()    {
@@ -208,6 +212,7 @@ module.exports = function (grunt) {
     'autoprefixer:dist',
     'concat',
     'requirejs',
+    'removeCombined',
     'uglify',
     'cssmin',
     'rev:dist',
