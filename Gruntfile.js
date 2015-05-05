@@ -14,15 +14,10 @@
 *   > grunt server --host=localhost --port=9001
 *   // --host: 指定自动打开浏览器的域名，默认值：localhost
 *   // --port: 指定自动打开浏览器的端口号，默认值：9000
+*   // --disable-open  禁止自动启动浏览器功能
+*   // --disable-urlrewrite 禁止地址转发功能
 *
-*   server命令控制开关，可以单独使用
-*   > grunt server:nobuild:noopen:norewrite
-*   // :nobuild 禁止编译功能，直接预览已经编译好的文件
-*   // :noopen  禁止自动启动浏览器功能
-*   // :norewrite 禁止地址转发功能
-*
-*   预览编译后的文件
-*   > grunt server --dist=true
+*   > grunt server:dist 预览编译后的文件
 *
 */
 
@@ -74,6 +69,7 @@ module.exports = function (grunt) {
     // 路径配置
     yo: appConfig,
 
+    // bower依赖包管理配置
     bower: require('./config/grunt/bower'),
 
     /**
@@ -159,22 +155,30 @@ module.exports = function (grunt) {
     */
     rev: require('./config/grunt/rev'),
 
+    // 删除已经打包的requirejs插件资源文件
+    removeCombined: require('./config/grunt/removeCombined')
+
   };
 
   // The initialization of Grunt configuration parameters
   grunt.initConfig(config);
 
+  grunt.loadTasks('tasks');
+
   // Registration start a local web server tasks
-  grunt.registerTask('server', function ()    {
-    var args = Array.prototype.slice.call(arguments, 0);
+  grunt.registerTask('serve', function(target) {
     var tasks = [];
 
+    // grunt.log
+    //   .subhead(this.name + ' options:')
+    //   .writeln(require('util').inspect(options));
+
     // Compile and preview the compiled result
-    if (grunt.option('dist')) {
+    if (target === 'dist') {
       tasks = [
         'build',
         'configureRewriteRules',
-        'connect:dist:keepalive'
+        'connect:dist'
       ];
     } else {
       tasks = [
@@ -182,23 +186,24 @@ module.exports = function (grunt) {
         'less:dev',
         'autoprefixer:dev'
       ];
-      if (args.indexOf('norewrite') === -1) {
+      if (!grunt.option('disable-urlrewrite')) {
         tasks.push('configureRewriteRules');
       }
-      tasks.push('connect:livereload');
-      // if (args.indexOf('noopen') === -1) {
-      //     tasks.push('open');
-      // }
-      tasks.push('watch');
+      tasks.push('connect:dev', 'watch');
     }
 
     grunt.task.run(tasks);
   });
 
+  grunt.registerTask('server', function (target) {
+    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+    grunt.task.run([target ? ('serve:' + target) : 'serve']);
+  });
+
   // 注册代码编译任务
   grunt.registerTask('build', [
     'clean:dist',
-    //'jshint',
+    'jshint',
     'copy:css',
     'copy:js',
     'copy:others',
@@ -209,6 +214,7 @@ module.exports = function (grunt) {
     'autoprefixer:dist',
     'concat',
     'requirejs',
+    'removeCombined',
     'uglify',
     'cssmin',
     'rev:dist',

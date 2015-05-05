@@ -26,6 +26,11 @@
     "jquery": "*",
     "underscore": "*",
     "backbone": "*",
-    "qunit": "*"
+    "requirejs-babel": "*"
+  },
+  "exportsOverride": {
+    "requirejs-babel": {
+      "js": "*.js"
+    }
   }
 }

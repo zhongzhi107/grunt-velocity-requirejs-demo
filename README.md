@@ -28,7 +28,7 @@ grunt bower:install
 
 1. 运行grunt本地服务器
 ```sh
-grunt server
+grunt serve
 ```
 
 1. 其他命令
@@ -45,11 +45,11 @@ grunt build
 grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
 /**
- * server命令参数
+ * serve命令参数
  *   --host: 指定自动打开浏览器的域名，默认值：localhost
  *   --port: 指定自动打开浏览器的端口号，默认值：9001
  */
- grunt server --host=www.yourdomain.com --port=9002
+ grunt serve --host=www.yourdomain.com --port=9002
 ```
 ## 特点
 
@@ -68,17 +68,11 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 * [router-page]开发环境支持模版与URL地址关系配置
 * [router-api]开发环境支持同步／异步接口假数据
 * [liveReload]开发环境下，静态文件修改后自动刷新浏览器
+* [babel]es6语法支持
 
 ### TODO
 * [psi]pagespeed性能优化
-* [babel]es6语法支持
 *
-
-## 多个工程共享node_modules
-
-为了以后多分支开发方便，可以将 `node_modules` 移动到项目外(比如 `/home/zhi.zhong` )，启动时加上参数 `--node-modules=/home/zhi.zhong` ，指定node\_modules的位置即可
-
-全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下
 
 ## 目录说明
 ```
@@ -89,6 +83,7 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
   ├─Gruntfile.js  //grunt配置文件
   ├─node_modules  //依赖包存放目录
   ├─prd           //编译输出目录
+  ├─tasks         //自定义grunt任务
   ├─config  
   │   ├─app.js            //项目整体配置
   │   ├─jshintrc.js       //jshint语法配置
@@ -181,3 +176,9 @@ less文件存为 `.less` 后缀，引用时还是使用 `.css`后缀，例如下
 
 ## background.less的用法
 多页面网站建议使用css sprite合并图片，不建议采用图片css内联
+
+## 多个工程共享node_modules
+
+为了以后多分支开发方便，可以将 `node_modules` 移动到项目外(比如 `/home/zhi.zhong` )，启动时加上参数 `--node-modules=/home/zhi.zhong` ，指定node\_modules的位置即可
+
+全局路径，也就是带上参数 -g 的安装模式。这个命令会把模块安装在 $PREFIX/lib/node_modules 下，可通过命令 npm root -g 查看全局模块的安装目录。 package.json 里定义的bin会安装到 $PREFIX/bin 目录下，如果模块带有 man page 会安装到 $PREFIX/share/man 目录下

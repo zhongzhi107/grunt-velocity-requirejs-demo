@@ -5,7 +5,8 @@ var util = require('util');
 
 module.exports = function(grunt) {
   function getModulesConfig(dir) {
-    var excludeModules = [];
+    // babel解析包只在运行时需要，发布的bundle文件中不需要打包
+    var excludeModules = ['babel'];
     var moduleConfig = require('../bundle') || {};
     var returnConfig = [];
 
@@ -20,7 +21,7 @@ module.exports = function(grunt) {
     grunt.file.recurse(dir, function(abspath, rootdir, subdir, filename) {
       if (filename === 'main.js') {
         returnConfig.push({
-          name: path.join(subdir, 'main'),
+          name: subdir + '/main',
           exclude: excludeModules
         });
       }
@@ -44,10 +45,13 @@ module.exports = function(grunt) {
         baseUrl: '.',
         paths: config.paths,
         shim: config.shim,
+        config: config.config,
+        pragmasOnSave: config.pragmasOnSave,
         optimize: 'none',
         findNestedDependencies: true,
         inlineText: true,
         removeCombined: true,
+        useStrict: true,
         modules: getModulesConfig('app/static/js')
       }
     }

@@ -9,6 +9,8 @@
     "node": true,
     "browser": true,
     "esnext": true,
+    "bitwise": true,
+    "eqeqeq": true,
     "camelcase": true,
     "curly": true,
     "immed": true,
@@ -20,7 +22,7 @@
     "regexp": true,
     "undef": true,
     "unused": true,
-    "strict": true,
+    "strict": false,
     "trailing": true,
     "smarttabs": true,
     "jquery": true,
@@ -30,9 +32,7 @@
         "_": true,
         "Backbone": true,
         "define": true,
-        "alert": true,
-        "confirm": true,
-        "pad": true,
-        "DEBUG": true
+        "DEBUG": true,
+        "alert": true
     }
 }

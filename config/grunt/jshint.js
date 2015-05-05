@@ -6,9 +6,11 @@ module.exports = {
     'Gruntfile.js',
     '<%=yo.app%>/static/**/*.js',
     '!<%=yo.app%>/static/js/lib/**/*.js',
+    '!<%=yo.app%>/static/js/common/require-config.js'
   ],
   options: {
     // 错误提示美化插件
-    reporter: require('jshint-stylish')
+    reporter: require('jshint-stylish'),
+    jshintrc: '.jshintrc'
   },
 };
