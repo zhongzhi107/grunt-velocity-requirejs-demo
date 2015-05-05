@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     grunt.file.recurse(dir, function(abspath, rootdir, subdir, filename) {
       if (filename === 'main.js') {
         returnConfig.push({
-          name: path.join(subdir, 'main'),
+          name: subdir + '/main',
           exclude: excludeModules
         });
       }
