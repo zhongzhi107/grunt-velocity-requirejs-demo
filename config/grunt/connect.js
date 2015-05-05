@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
   // parse velocity template
   function velocityParser (req, res, next, env) {
-    env = env || 'dev';
+    env = env || 'dev'; //区分当前serve类型
     function requireUncached(module){
       var requirePath = path.resolve(process.cwd(), module);
       delete require.cache[requirePath];
