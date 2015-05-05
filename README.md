@@ -28,7 +28,7 @@ grunt bower:install
 
 1. 运行grunt本地服务器
 ```sh
-grunt server
+grunt serve
 ```
 
 1. 其他命令
@@ -45,11 +45,11 @@ grunt build
 grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 
 /**
- * server命令参数
+ * serve命令参数
  *   --host: 指定自动打开浏览器的域名，默认值：localhost
  *   --port: 指定自动打开浏览器的端口号，默认值：9001
  */
- grunt server --host=www.yourdomain.com --port=9002
+ grunt serve --host=www.yourdomain.com --port=9002
 ```
 ## 特点
 
