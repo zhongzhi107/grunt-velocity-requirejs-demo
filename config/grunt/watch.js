@@ -14,11 +14,9 @@ module.exports = {
       livereload: require('../app').port.liveReload
     },
     files: [
-      '<%=velocity.root.dev%>/**/*.<%=velocity.ext%>',
       '.tmp/static/css/**/*.css',
-      '<%=yo.app%>/static/css/**/*.css',
-      '!<%=yo.app%>/node_modules/**',
-      '<%=yo.app%>/**/*.{js,<%=velocity.ext%>,png,jpg,jpeg,gif,ttf,webp,svg}'
+      '<%=yo.app%>/**/*.{<%=velocity.ext%>,js,css,png,jpg,jpeg,gif,ttf,webp,svg,tpl}',
+      '!<%=yo.app%>/node_modules/**'
     ]
   }
 };

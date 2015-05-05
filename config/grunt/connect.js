@@ -7,14 +7,16 @@ module.exports = function(grunt) {
   var querystring = require('querystring');
 
   var app = require('../app');
-  var LIVERELOAD_PORT = app.port.liveReload;
+  var localhost = grunt.option('host') || 'localhost';
+  var port = grunt.option('port') || app.port.www;
   var rewriteRulesSnippet = require('grunt-connect-route/lib/utils').rewriteRequest;
   var mountFolder = function(connect, dir) {
-    return connect.static(require('path').resolve(dir));
+    return connect.static(path.resolve(dir));
   };
 
   // parse velocity template
-  function velocityParser (req, res, next) {
+  function velocityParser (req, res, next, env) {
+    env = env || 'dev';
     function requireUncached(module){
       var requirePath = path.resolve(process.cwd(), module);
       delete require.cache[requirePath];
@@ -27,10 +29,7 @@ module.exports = function(grunt) {
     // parse VM template
     var urlObject = url.parse(req.url);
     var template = routerPage[urlObject.pathname];
-    var templateRoot = grunt.config('velocity.root.dev');
-    if (grunt.option('dist')) {
-      templateRoot = grunt.config('velocity.root.dist');
-    }
+    var templateRoot = grunt.config('velocity.root.' + env);
     var templateAbsPath = path.join(templateRoot, template + '.' + grunt.config('velocity.ext'));
 
     if (fs.existsSync(templateAbsPath)) {
@@ -61,34 +60,38 @@ module.exports = function(grunt) {
   return {
     rules: require('../router-api'),
     options: {
-      port: grunt.option('port') || require('../app').port.www,
+      port: port,
       // change this to '0.0.0.0' to access the server from outside
       hostname: '0.0.0.0',
       //localhost: 'my.yo.com',
-      localhost: grunt.option('host') || 'localhost',
+      localhost: localhost,
     },
-    livereload: {
+    dev: {
       options: {
-        open: 'http://localhost:9001',
+        livereload: app.port.liveReload,
+        open: grunt.option('disable-open') ? false : 'http://localhost:9001',
         middleware: function (connect) {
           return [
-            require('connect-livereload')({ port: LIVERELOAD_PORT }),,
             mountFolder(connect, '.tmp'),
             mountFolder(connect, app.path.app),
             rewriteRulesSnippet,
-            velocityParser
+            function(req, res, next) {
+              return velocityParser(req, res, next, 'dev');
+            }
           ];
         }
       }
     },
     dist: {
-      livereload: false,
       options: {
+        keepalive: true,
         middleware: function (connect) {
           return [
             mountFolder(connect, app.path.dist),
             rewriteRulesSnippet,
-            velocityParser
+            function(req, res, next) {
+              return velocityParser(req, res, next, 'dist');
+            }
           ];
         }
       }
