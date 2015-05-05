@@ -206,6 +206,7 @@ module.exports = function (grunt) {
     'jshint',
     'copy:css',
     'copy:js',
+    'copy:others',
     'imagemin',
     'copy:image',
     'useminPrepare',

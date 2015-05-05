@@ -42,4 +42,10 @@ module.exports = {
     src: '**/*.vm',
     dest: '<%=velocity.root.dist%>'
   },
+	others: {
+		expand: true,
+		cwd: '<%=yo.app%>/static',
+		dest: '<%=yo.dist%>/static',
+		src: '**/*.{ttf,eot,otf,svg,woff,woff2,swf,mp3}'
+	}
 };
