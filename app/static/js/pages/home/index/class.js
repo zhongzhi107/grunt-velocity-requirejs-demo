@@ -1,3 +1,5 @@
+'use strict';
+
 import sum from 'pages/home/index/sum';
 
 console.log( sum(1,2) );
