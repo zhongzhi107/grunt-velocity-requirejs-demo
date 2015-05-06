@@ -34,7 +34,7 @@ module.exports = {
     dot: true,
     cwd: '.tmp/concat/static',
     dest: '<%=yo.dist%>/static/',
-    src: '**/*.{png,jpg,jpeg,gif,ttf}'
+    src: '**/*.{png,jpg,jpeg,gif}'
   },
   vm: {
     expand: true,
