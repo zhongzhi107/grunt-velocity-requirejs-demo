@@ -69,7 +69,7 @@ module.exports = function(grunt) {
     dev: {
       options: {
         livereload: app.port.liveReload,
-        open: grunt.option('disable-open') ? false : 'http://localhost:9001',
+        open: grunt.option('ignore-open') ? false : 'http://localhost:9001',
         middleware: function (connect) {
           return [
             mountFolder(connect, '.tmp'),
