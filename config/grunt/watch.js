@@ -9,6 +9,13 @@ module.exports = {
     ],
     tasks: ['newer:less:dev', 'newer:autoprefixer:dev']
   },
+  icon: {
+      files: [
+          '<%=yo.app%>/static/common/images/**/{icons,repeat-x,repeat-y}/*.png',
+          '!<%=yo.app%>/static/common/images/**/sprite.png'
+      ],
+      tasks: ['sprite']
+  },
   livereload: {
     options: {
       livereload: require('../app').port.liveReload
