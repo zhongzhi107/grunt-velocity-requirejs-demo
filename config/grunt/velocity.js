@@ -3,7 +3,7 @@
 module.exports = {
   root: {
     dev: '<%=yo.app%>/vm',
-    dist: '<%=yo.dist%>/refs',
+    dist: '<%=yo.dist%>/vm',
   },
   data: {
     page: './<%=yo.app%>/data/page',

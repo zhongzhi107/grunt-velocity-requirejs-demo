@@ -1,5 +1,12 @@
-# Grunt-Velocity前端开发环境部署说明
+# 使用说明
 
+## 背景
+许多公司使用Java ＋ velocity模块开发，前后端开发都在一个Java工程项目中，
+为了开发velocity模版，前端开发人员需要安装eclipse运行整个Java工程，环境配置复杂，
+启动速度也慢，而且也不便于前后端代码分离。
+
+为了解决前端环境问题，我们使用gruntjs构建了这套前端开发、构建环境。
+它具有部署简单、前后端代码分离等特点，还支持多种前端开发流行的技术特点。
 
 ## 前提
 
@@ -37,19 +44,20 @@ grunt serve
 // 编译全站
 grunt build
 
-/**
- * --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
- * --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
- *				   使用该参数便于在同一机器上运行多个分支时共享依赖包
- */
 grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
+// --gruntfile: 指定Gruntfile.js文件的位置，在项目根目录外运行Grunt会用到该参数
+// --node-modules: 指定开发环境依赖包的位置，只需要指定到node_modules父目录即可
+//                 使用该参数便于在同一机器上运行多个分支时共享依赖包
+// --deploy-type: 指定当前编译类型，取值可能是dev/beta/prod/prepare,分别对应的是dev/QA/正式/灰度发布
 
-/**
- * serve命令参数
- *   --host: 指定自动打开浏览器的域名，默认值：localhost
- *   --port: 指定自动打开浏览器的端口号，默认值：9001
- */
- grunt serve --host=www.yourdomain.com --port=9002
+//server命令参数
+grunt server --host=localhost --port=9001
+// --host: 指定自动打开浏览器的域名，默认值：localhost
+// --port: 指定自动打开浏览器的端口号，默认值：9000
+// --ignore-open  禁止自动启动浏览器功能
+// --ignore-urlrewrite 禁止地址转发功能
+
+grunt server:dist //预览编译后的文件
 ```
 ## 特点
 
@@ -77,28 +85,43 @@ grunt --gruntfile=/home/webapp/src/Gruntfile.js --node-modules=/home/zhi.zhong
 ## 目录说明
 ```
 ...
-  ├─package.json  //grunt依赖包配置文件
-  ├─pom.xml       //pom文件，设置了maven包信息
-  ├─.gitignore
-  ├─Gruntfile.js  //grunt配置文件
-  ├─node_modules  //依赖包存放目录
-  ├─prd           //编译输出目录
-  ├─tasks         //自定义grunt任务
-  ├─config  
-  │   ├─app.js            //项目整体配置
-  │   ├─jshintrc.js       //jshint语法配置
-  │   ├─bundle.js         //全站js文件打包配置
-  │   ├─router-api.js     //异步请求与url对应关系配置
-  │   ├─router-page.js    //模拟数据URL配置
-  │   └─usemin.js         //usemin配置，依赖module.js，一般不需要修改
-  ├─app           //pad版程序代码
-  │   ├─data      //本地测试数据
-  │   │   ├─api   //页面初始化数据
-  │   │   └─page  //异步接口数据
-  │   ├─css
-  │   ├─js
-  │   └─vm        //vm模板
-  └─.tmp          //运行时生成临时文件
+├─.tmp          //运行时生成临时文件
+├─app           //pad版程序代码
+│   ├─data      //本地测试数据
+│   │   ├─api   //页面初始化数据
+│   │   └─page  //异步接口数据
+│   ├─static    //静态资源
+│   │   ├─css       //css or less
+│   │   │   ├─icon.less       //自动合并css sprite生成的less变量文件
+│   │   │   ├─repeat-x.less   //自动合并css sprite生成的less变量文件（横向平铺类型）
+│   │   │   ├─repeat-y.less   //自动合并css sprite生成的less变量文件（纵向平铺类型）
+│   │   │   └─pages           //页面相关的样式
+│   │   ├─images    //图片
+│   │   │   └─common
+│   │   │       ├─icon       //需要合并css sprite生成的图片
+│   │   │       ├─repeat-x   //需要合并css sprite生成的图片（横向平铺类型）
+│   │   │       └─repeat-y   //需要合并css sprite生成的图片（纵向平铺类型）
+│   │   └─js        //js or es6 or tpl
+│   │       ├─common         //common
+│   │       ├─lib            //bower安装目录
+│   │       └─pages          //页面相关的js
+│   └─vm        //vm模板
+├─config  
+│   ├─grunt             //Gruntfile.js子配置文件
+│   ├─app.js            //项目整体配置
+│   ├─bundle.js         //全站js文件打包配置
+│   ├─router-api.js     //异步请求与url对应关系配置
+│   ├─router-page.js    //模拟数据URL配置
+│   └─usemin-pattern.js //usemin配置，依赖module.js，一般不需要修改
+├─docs          //文档  
+├─prd           //编译输出目录  
+├─tasks         //自定义grunt任务
+├─.gitignore
+├─.jshintrc     //jshint语法配置
+├─bower.json    //bower配置
+├─Gruntfile.js  //grunt主配置文件
+├─package.json  //grunt依赖包配置文件
+└─README.md
 ```
 
 ## 路由说明

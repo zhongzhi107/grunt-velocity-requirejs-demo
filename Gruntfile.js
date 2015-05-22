@@ -14,8 +14,8 @@
 *   > grunt server --host=localhost --port=9001
 *   // --host: 指定自动打开浏览器的域名，默认值：localhost
 *   // --port: 指定自动打开浏览器的端口号，默认值：9000
-*   // --disable-open  禁止自动启动浏览器功能
-*   // --disable-urlrewrite 禁止地址转发功能
+*   // --ignore-open  禁止自动启动浏览器功能
+*   // --ignore-urlrewrite 禁止地址转发功能
 *
 *   > grunt server:dist 预览编译后的文件
 *
@@ -186,7 +186,7 @@ module.exports = function (grunt) {
         'less:dev',
         'autoprefixer:dev'
       ];
-      if (!grunt.option('disable-urlrewrite')) {
+      if (!grunt.option('ignore-urlrewrite')) {
         tasks.push('configureRewriteRules');
       }
       tasks.push('connect:dev', 'watch');
