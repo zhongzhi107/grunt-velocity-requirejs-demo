@@ -8,5 +8,6 @@ module.exports = {
   data: {
     page: './<%=yo.app%>/data/page',
   },
-  ext: 'vm'
+  ext: 'vm',
+  macro: './<%=yo.app%>/vm/common/layout.vm'
 };

@@ -7,9 +7,9 @@ module.exports = {
   dev: {
     files: [{
       expand: true,
-      flatten: true,
-      src: '.tmp/static/css/**/*.css',
-      dest: '.tmp/static/css/'
+      cwd: '.tmp/static/css',
+      src: '**/*.css',
+      dest: '.tmp/static/css'
     }]
   },
   dist: {

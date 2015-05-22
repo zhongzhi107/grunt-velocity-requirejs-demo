@@ -1,0 +1,19 @@
+#macro(render)
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<title>#if($title) $title #else 去哪儿网 #end</title>
+	##<link rel="stylesheet" href="/static/css/base.css">
+	#if($q_css)
+	$!q_css
+	#end
+</head>
+<body>
+$!q_body
+#if($q_js)
+$!q_js
+#end
+</body>
+</html>
+#end

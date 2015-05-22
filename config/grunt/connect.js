@@ -35,7 +35,8 @@ module.exports = function(grunt) {
     if (fs.existsSync(templateAbsPath)) {
       var engine = new Engine({
         root: templateRoot,
-        template: templateAbsPath
+        template: templateAbsPath,
+        macro: path.resolve(process.cwd(), grunt.config('velocity.macro'))
       });
       var contextFile = grunt.config('velocity.data.page') + template;
       var context = {};
@@ -51,7 +52,7 @@ module.exports = function(grunt) {
       }
       var result = engine.render(context);
       res.setHeader('Content-Type', 'text/html;charset=UTF-8');
-      res.end(result);
+      res.end(result.trim());
     } else {
       next();
     }

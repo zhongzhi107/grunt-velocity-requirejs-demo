@@ -11,6 +11,17 @@ The large array-like variables contain all information about a single icon
 At the bottom of this section, we provide information about the spritesheet itself
 @spritesheet: width height image @spritesheet-sprites;
 */
+@add_logo-name: add_logo;
+@add_logo-x: 24px;
+@add_logo-y: 0px;
+@add_logo-offset-x: -24px;
+@add_logo-offset-y: 0px;
+@add_logo-width: 18px;
+@add_logo-height: 18px;
+@add_logo-total-width: 42px;
+@add_logo-total-height: 24px;
+@add_logo-image: '/static/images/common/icon/sprite.png';
+@add_logo: 24px 0px -24px 0px 18px 18px 42px 24px '/static/images/common/icon/sprite.png' add_logo;
 @ok-name: ok;
 @ok-x: 0px;
 @ok-y: 0px;
@@ -18,15 +29,15 @@ At the bottom of this section, we provide information about the spritesheet itse
 @ok-offset-y: 0px;
 @ok-width: 24px;
 @ok-height: 24px;
-@ok-total-width: 24px;
+@ok-total-width: 42px;
 @ok-total-height: 24px;
 @ok-image: '/static/images/common/icon/sprite.png';
-@ok: 0px 0px 0px 0px 24px 24px 24px 24px '/static/images/common/icon/sprite.png' ok;
-@spritesheet-width: 24px;
+@ok: 0px 0px 0px 0px 24px 24px 42px 24px '/static/images/common/icon/sprite.png' ok;
+@spritesheet-width: 42px;
 @spritesheet-height: 24px;
 @spritesheet-image: '/static/images/common/icon/sprite.png';
-@spritesheet-sprites: @ok;
-@spritesheet: 24px 24px '/static/images/common/icon/sprite.png' @spritesheet-sprites;
+@spritesheet-sprites: @add_logo @ok;
+@spritesheet: 42px 24px '/static/images/common/icon/sprite.png' @spritesheet-sprites;
 
 /*
 The provided classes are intended to be used with the array-like variables

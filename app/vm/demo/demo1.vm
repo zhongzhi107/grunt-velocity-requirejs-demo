@@ -1,0 +1,188 @@
+##set($title = 'This is test')
+#set($ok = 'OK')
+#define($q_css)
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- build:css(.tmp/concat) /static/css/pages/demo/index.css -->
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" href="/static/css/pages/demo/demo.css">
+<!-- endbuild -->
+<style>
+  body{
+    font-family:"Monaco","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }  
+</style>
+#end
+#define($q_body)
+<header>
+  <h1>grunt-velocity-requirejs</h1>
+  <p>前端velocity开发框架</p>
+  <p>is#if($test) $test #else$ok #end</p>  
+</header>
+<div class="container">
+<section>
+  <h2 class="section-header">velocity语法使用</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>基本上支持所有的vm语法，具体的可以参见 https://github.com/fool2fish/velocity，使用macro指令的例子：</p>
+      <img src="/static/images/demo/macro.png" alt="" class="code-display">
+      <p>遇到的一个问题，在connect.js中配置了layout.vm后，grunt serve:dist后，会使layout.vm中引用的资源无法访问，原因是在velocity编译时候还是取的开发环境下的layout，所以需要手动的配置velocity.js到生产环境下的layout</p>
+    </div>
+    <div class="col-md-4">
+      <p class="text-danger">
+        这种layout级别的在框架中会自动加载编译，当改变路径时，只需要修改config/grunt/connect.js中macro属性
+      </p>
+      <pre>
+var engine = new Engine({
+  root: templateRoot,
+  template: templateAbsPath,
+  macro: path.resolve(process.cwd(), grunt.config('velocity.macro'))
+});
+      </pre>
+      
+    </div>
+  </div>
+  
+</section>
+<section>
+  <h2 class="section-header">icon sprite</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>基于grunt-spritesmith工具可以优雅的完成icons sprite的合成，并且在基于less的环境下，只需一行代码就能引入你需要的icon</p>
+      <p>step1. 将你的icon放到 static/images/common/icon/ 目录下</p>
+      <p>step2. 运行 grunt sprite</p>
+      <p>step3. 在展示的加点上加一下css，其中类名是你的图片名</p>
+      <pre>
+.add_logo{
+  .sprite(@add_logo);
+}      </pre>
+      <p>step4. 效果如左边</p>
+    </div>
+    <div class="col-md-4">
+      <div class="demo-icon"><span class="add_logo"></span>使用icon sprite<span class="ok"></span></div>
+    </div>
+  </div>
+  
+</section>
+<section>
+  <h2 class="section-header">模块化开发之requireJS</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>使用requirejs对代码编写及组织能带来很大的好处，本框架使用了r.js打包工具，因为是多页面所以在每个单独的页面中都需要引入requirejs，具体的语法参见 http://www.requirejs.cn/
+      </p>
+      <pre>&lt;script src="/static/js/common/require-config.js"&gt;&lt;/script&gt;
+&lt;script data-main="pages/demo/main" src="/static/js/lib/requirejs/require.js"&gt;&lt;/script&gt; </pre>
+      <p>第二行代码中，指明每个页面的js的入口文件，requirejs首先会加载的就是这个文件，例main.js</p>
+      <pre>require([
+  'common/lib'
+  ], function() {
+    require(['pages/demo/index']);
+});</pre>
+      <p>多页面之间文件的打包及压缩，<a href="/">跳到首页</a></p>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</section>
+<section>
+  <h2 class="section-header">开发环境支持同步／异步接口假数据</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>模拟vm的context数据，通过读取定义好的数据，编译到对应的模版中，在app/page/XX下定义数据文件，具体的读取数据及编译在config/grunt/connect.js中</p>
+      <pre>module.exports = function (req, res) {
+  var url = require('url');
+  var querystring = require('querystring');
+  var query = querystring.parse(url.parse(req.url).query);
+
+  return {
+    pageTitle: 'Test page',
+    name: query.name || 'lm',
+    body: 'hello world'
+  };
+};</pre>
+    <p>从上述代码中可以看到，除过从文件中读取，还支持从url中获取数据，示例见右边</p>
+    <p>异步数据通过配置 config/router-api.js 来建立请求url与数据文件的代理映射，其格式如下：</p>
+    <pre>module.exports = {
+  '^/api/(.*)': 'require!/app/data/api/$1.js'
+}</pre>
+    </div>
+    <div class="col-md-4">
+      <p>my name is $name, are you ok</p>
+      <p><a href="/demo?name=flm">http://loclahost:9001/demo?name=flm</a></p>
+      <p>异步请求数据   <button class="btn btn-danger" onclick="getData()">获取数据</button></p>
+      <pre class="asyc-data">data = {
+      }</pre>
+    </div>
+  </div>
+</section>
+<section>
+  <h2 class="section-header">使用自定义规则自动合并文件</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>基本的工作流程：</p>
+      <p>step1. 首先将css、js、image等静态资源放到临时目录.tmp下</p>
+      <p>step2. 编译less文件到.tmp相应的目录下</p>
+      <p>step3. 使用useminPrepare任务根据vm模版中定义好需要合并的文件生成相应的configuration，供下面的任务使用</p>
+      <p>step4. 使用concat、uglify、cssmin、requirejs完成文件的压缩，并将压缩后的文件保存到prd生产目录下</p>
+      <p>step5. 使用rev:dist完成文件的版本命名</p>
+      <p>step6. 完成对vm中静态资源的替换</p>
+      <pre>&lt;!-- build:css(.tmp/concat) /static/css/pages/demo/index.css -->
+&lt;link rel="stylesheet" href="/static/css/base.css">
+&lt;link rel="stylesheet" href="/static/css/pages/demo/demo.css">
+&lt;!-- endbuild --></pre>
+      <pre>
+  &lt;!-- build:js /static/js/pages/demo/build.js -->
+  &lt;script src="/static/js/pages/demo/event.js">&lt;/script>
+  &lt;script src="/static/js/pages/demo/set.js">&lt;/script>
+  &lt;!-- endbuild -->
+      </pre>
+      <p>
+        在这个框架中js通过r.js打包，所以js一般不需要去配置
+      </p>  
+    </div>
+    <div class="col-md-4">
+      <p>build过程：</p>
+      <pre>
+  grunt.registerTask('build', [
+    'clean:dist',
+    'jshint',
+    'copy:css',
+    'copy:js',
+    'copy:others',
+    'imagemin',
+    'copy:image',
+    'useminPrepare',
+    'less:dist',
+    'autoprefixer:dist',
+    'concat',
+    'requirejs',
+    'removeCombined',
+    'uglify',
+    'cssmin',
+    'rev:dist',
+    'copy:vm',
+    'usemin',
+  ]);
+      </pre>
+    </div>
+  </div>
+</section>
+<section>
+  <h2 class="section-header">ES6支持</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <p>通过babel预编译es6，能够更早的使用es6的语法，具体的参加 <a href="http://es6.ruanyifeng.com/">ECMAScript 6入门</a></p>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</section>
+</div>
+
+#end
+#define($q_js)
+  <script src="/static/js/common/require-config.js"></script>
+  <script data-main="pages/demo/main" src="/static/js/lib/requirejs/require.js"></script>
+  <!-- build:js /static/js/pages/demo/build.js -->
+  <script src="/static/js/pages/demo/event.js"></script>
+  <script src="/static/js/pages/demo/set.js">
+  <!-- endbuild -->
+#end
+#render()

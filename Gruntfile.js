@@ -221,7 +221,6 @@ module.exports = function (grunt) {
     'copy:vm',
     'usemin',
   ]);
-
   // 注册Grunt默认任务
   grunt.registerTask('default', [
     'build'
