@@ -7,6 +7,6 @@
 
 module.exports = {
     // homepage
-    '/': '/home/index',
-    '/demo': '/demo/demo1'
+    '/demo': '/home/index',
+    '/': '/demo/demo1'
 }

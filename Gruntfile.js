@@ -221,6 +221,26 @@ module.exports = function (grunt) {
     'copy:vm',
     'usemin',
   ]);
+  grunt.registerTask('test', [
+    'clean:dist',
+    'jshint',
+    'copy:css',
+    'copy:js',
+    'copy:others',
+    'imagemin',
+    'copy:image',
+    'useminPrepare',
+    'less:dist',
+    'autoprefixer:dist',
+    'concat',
+    'requirejs',
+    'removeCombined',
+    'uglify',
+    'cssmin',
+    /*'rev:dist',
+    'copy:vm',
+    'usemin',*/
+  ]);
   // 注册Grunt默认任务
   grunt.registerTask('default', [
     'build'

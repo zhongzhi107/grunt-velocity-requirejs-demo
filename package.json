@@ -27,7 +27,7 @@
     "grunt-contrib-connect": "0.10.1",
     "grunt-contrib-watch": "0.6.1",
     "grunt-newer": "1.0.0",
-    "velocity": "0.7.2"
+    "velocity": "lmf/velocity"
   },
   "engines": {
     "node": ">=0.10.0"

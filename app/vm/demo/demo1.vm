@@ -15,8 +15,7 @@
 #define($q_body)
 <header>
   <h1>grunt-velocity-requirejs</h1>
-  <p>前端velocity开发框架</p>
-  <p>is#if($test) $test #else$ok #end</p>  
+  <p>前端velocity开发框架</p>    
 </header>
 <div class="container">
 <section>
@@ -77,7 +76,7 @@ var engine = new Engine({
   ], function() {
     require(['pages/demo/index']);
 });</pre>
-      <p>多页面之间文件的打包及压缩，<a href="/">跳到首页</a></p>
+      <p>多页面之间文件的打包及压缩，<a href="/demo">跳到首页</a></p>
     </div>
     <div class="col-md-4"></div>
   </div>
